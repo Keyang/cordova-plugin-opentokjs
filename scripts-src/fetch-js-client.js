@@ -48,7 +48,10 @@ module.exports = function(context) {
         }))
         .pipe(replacestream('var _onVideoError = OT.$.bind(function(event) {\n', 'var _onVideoError = OT.$.bind(function(event) {\n          if (event.target.error.code === window.MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED) {\n            return;\n          }\n', {
           max_match_len: 1000
-        }));
+        }))
+        .pipe(replacestream('if (webRtcStream.getAudioTracks().length > 0) {\n          _audioLevelSampler = new WebaudioAudioLevelSampler(audioContextProvider());\n          _audioLevelSampler.webRTCStream(webRtcStream);\n        }', '/*Removed sampler as ios safari not have AudioContext */', {
+          max_match_len: 1000
+        }))
       }
 
       sourceStream.pipe(through(
