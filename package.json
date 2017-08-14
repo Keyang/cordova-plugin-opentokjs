@@ -41,7 +41,6 @@
     "url": "https://github.com/aoberoi/cordova-plugin-opentokjs/issues"
   },
   "peerDependencies": {
-    "cordova-plugin-crosswalk-webview": "^1.2.0"
   },
   "devDependencies": {
     "browserify": "^10.2.4",
